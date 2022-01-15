@@ -5,6 +5,7 @@ import Pagination from "../../components/Pagination";
 import { BASE_URL } from "utils/requests";
 import { MoviePage } from "types/movie";
 
+
 function Listing() {
 
     const [pageNumber, setPageNumber] = useState(0);
@@ -36,7 +37,7 @@ function Listing() {
     return (
 
         <>
-            <Pagination page={page} onChange={handlePageChange}/>
+            <Pagination page={page} onChange={handlePageChange} />
 
             <div className="container">
 
