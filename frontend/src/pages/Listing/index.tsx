@@ -1,19 +1,30 @@
 import axios from "axios";
+import { useState, useEffect } from "react";
 import MovieCard from "../../components/MovieCard";
 import Pagination from "../../components/Pagination";
 import { BASE_URL } from "utils/requests";
+import { MoviePage } from "types/movie"; 
 
 function Listing() {
 
-    // FORMA ERRADA
-    axios.get(`${BASE_URL}/movies?size=12`)
+    const [pageNumber, setPageNumber] = useState(0);
+
+    useEffect(() => {
+        axios.get(`${BASE_URL}/movies?size=12&page=28`)
         .then(response => {
-            console.log(response.data);
+            const data = response.data as MoviePage;
+            console.log(data);
+            setPageNumber(data.number);
         });
+    }, []);
+
+    // FORMA ERRADA (Lógica solta precisa usar o React hooks)
+
 
     return (
 
         <>
+        <p>{pageNumber}</p>
             <Pagination />
 
             <div className="container">
